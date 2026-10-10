@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'none'; font-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+<meta name="theme-color" content="#0f766e">
+<title>iPhone 硬體欄位診斷 · 純本機</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f6f8;--card:#fff;--fg:#1c2933;--mute:#64748b;--line:#d9e1e6;--accent:#0f766e;--light:#eaf7f3;--warn:#a04a13}
+@media(prefers-color-scheme:dark){:root{--bg:#111824;--card:#1d2935;--fg:#f0f4f8;--mute:#a8b3be;--line:#354351;--accent:#42c5ab;--light:#18362f;--warn:#f1ae79}}
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang TC',sans-serif;background:var(--bg);color:var(--fg);margin:0}main{max-width:840px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom))}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.head h1{font-size:23px;line-height:1.2;margin:3px 0 8px}.head p{font-size:13px;color:var(--mute);margin:0}.pill{padding:6px 10px;background:var(--light);color:var(--accent);border-radius:99px;font-size:12px;white-space:nowrap;font-weight:700}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;margin-top:14px;padding:16px}h2{font-size:18px;margin:0 0 10px}.intro{line-height:1.65;font-size:14px;color:var(--mute)}.file{display:block;text-align:center;border:2px dashed var(--accent);border-radius:13px;padding:17px 10px;color:var(--accent);font-weight:700;margin:16px 0 9px;cursor:pointer}.file input{display:none}.meta{font-size:12px;color:var(--mute);overflow-wrap:anywhere}label.opt{display:flex;align-items:center;gap:9px;margin:18px 0 15px;font-size:14px;line-height:1.5}.opt input{accent-color:var(--accent);width:19px;height:19px;flex:none}.actions{display:flex;gap:9px;flex-wrap:wrap}button{border:0;border-radius:12px;background:var(--accent);color:white;padding:12px 15px;font-size:15px;font-weight:700;cursor:pointer}button.secondary{color:var(--fg);background:var(--bg);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}progress{width:100%;height:12px;accent-color:var(--accent);margin:15px 0 6px}.progress-label{font-size:12px;color:var(--mute)}.warning{background:var(--light);border-radius:12px;padding:13px;line-height:1.6;font-size:13px;white-space:pre-wrap}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:14px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:5px}.stat-label{font-size:12px;color:var(--mute)}.stat-value{font-size:19px}.category-list details{border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden}.category-list summary{padding:14px;font-weight:700;cursor:pointer}.category-list details[open] summary{background:var(--light)}table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}td,th{padding:8px 7px;border-top:1px solid var(--line);word-break:break-word;text-align:left}th{color:var(--mute)}td:nth-child(2),th:nth-child(2){width:18%}td:nth-child(3),th:nth-child(3){width:14%}.foot{font-size:12px;color:var(--mute);text-align:center;margin:22px 0 7px}code{padding:2px 5px;background:var(--bg);border-radius:4px}p.note{color:var(--mute);font-size:13px;line-height:1.6}@media(min-width:650px){.stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<header class="head"><div><h1>iPhone 硬體欄位診斷</h1><p>本機離線掃描 · 測試工具 <span id="version">1.1-DIAG-1</span></p></div><div class="pill">不傳檔案</div></header>
+<section class="card"><h2>探索 Analytics 實際欄位</h2><p class="intro">此頁與 V1.1 正式分析頁面獨立，只確認檔案中出現哪些硬體相關欄位、出現次數及記錄是否明確標為 iPhone／Apple Watch。<strong>不判定零件廠商、不推測硬體容量。</strong></p>
+<label class="file">選擇 Analytics 主檔<input id="file" type="file" accept=".ips,.synced,.txt,.json,text/plain,application/json"></label>
+<div id="selected" class="meta">未選擇檔案</div>
+<label class="opt"><input id="samples" type="checkbox"><span>診斷報告包含<strong>經過嚴格過濾的短代碼示例</strong>（預設關閉；即使開啟，分享前仍應自行檢查）</span></label>
+<div class="actions"><button id="analyze" disabled>開始本機診斷</button><button id="reset" class="secondary">清除</button></div>
+<progress id="progress" value="0" max="100"></progress><div id="progressLabel" class="progress-label">請先選擇檔案</div>
+</section>
+<section class="card" id="results" hidden><div class="actions" style="justify-content:space-between;align-items:center"><h2 style="margin:0">診斷摘要</h2><button id="export" class="secondary" disabled>匯出脫敏摘要 JSON</button></div>
+<p class="note">只匯出欄位名稱、次數、來源分組及勾選時保留的短值；<strong>不匯出 Analytics 原始行</strong>。</p>
+<div class="stats" id="stats"></div><div class="warning" id="warning"></div><div class="category-list" id="categories"></div>
+</section>
+<section class="card"><h2>資料安全</h2><p class="intro">檔案透過 iPhone Safari 在本機以串流方式讀取，不呼叫 API，不連接任何資料收集服務。頁面設有禁止網路資料請求的瀏覽器安全政策。診斷頁不儲存原始檔、不使用 localStorage，也不列出序號、UDID、IMEI、ECID、地址等識別資訊。<strong>GitHub Pages 僅用於提供程式檔案</strong>，請勿把 Analytics 檔案上傳 GitHub。</p></section>
+<p class="foot">診斷版非正式硬體品質報告 · <a href="../" style="color:var(--accent)">返回 V1.1 分析器</a></p>
+</main>
+<script src="./core.js"></script><script src="./ui.js"></script>
+</body></html>
