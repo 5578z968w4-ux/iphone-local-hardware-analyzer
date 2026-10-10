@@ -1,0 +1,102 @@
+iPhone 精準硬體診斷 — DIAG-2.0.0
+================================
+
+只上傳「diagnostic-v2」資料夾；不要把裡面的 index.html 放到 Repository 根目錄。
+本包不含正式版 index.html、app.js、analyzer-core.js 或 sw.js 的替換檔。
+不需 Mac 捷徑、不需重新設定 Pages、不需動 NAS。
+
+一、部署（和正式 V1.1 並存）
+---------------------------
+1. 解壓縮本 ZIP。
+2. 開啟 GitHub：
+   https://github.com/5578z968w4-ux/iphone-local-hardware-analyzer
+3. Code → 確認 main → Add file → Upload files。
+4. 拖入整個 diagnostic-v2 資料夾，不要只拖入裡面的檔案。
+5. 按 Commit changes 前，確認路徑顯示：
+   diagnostic-v2/index.html
+   diagnostic-v2/diag2-core.d2.0.0.js
+   diagnostic-v2/diag2-worker.d2.0.0.js
+   diagnostic-v2/diag2-ui.d2.0.0.js
+   diagnostic-v2/diag2-style.d2.0.0.css
+6. 不上傳「說明與測試」資料夾，也不要上傳原 Analytics／診斷摘要。
+7. 等既有 GitHub Pages 部署完成後，在 Safari 開啟：
+   https://5578z968w4-ux.github.io/iphone-local-hardware-analyzer/diagnostic-v2/
+8. 頁面應顯示 DIAG-2.0.0 及「解析器已就緒」。
+   若還是正式 V1.1 或 DIAG-1，先核對網址和檔案路徑，不要重設 Pages。
+
+本包只在目前對話的工作環境產生；尚未上傳或部署到你的 GitHub。
+
+二、手機操作
+------------
+1. 可先按「先用合成資料測試」確認頁面能運作。
+   合成模式會顯示警告；裡面的數字不是你的手機數字。
+2. 選「檔案」App 裡那一份原 Analytics-…ips.ca.synced。
+   不要選先前上傳聊天室的「脫敏摘要.json」；摘要沒有原值，不能還原。
+3. 按「開始精準診斷」。可隨時按「停止」。
+4. 完成後勾選「在本機顯示允許的原值」，查看 NAND、RAM、致動器及電池。
+5. 「同筆物件核對」保留資料關聯；L 是原檔行次、O 是物件序號，不是裝置 ID。
+6. 要提供下一步診斷資料：
+   勾選「包含允許的候選值」→「預覽匯出內容」→ 檢查 →「下載診斷 JSON」。
+7. 只分享輸出的 iPhone_DIAG-2_精準診斷摘要.json；不要分享原 Analytics。
+
+「在本機顯示原值」和「包含允許的候選值」是獨立開關。
+前者不會自動授權匯出；後者需要先預覽才能下載。
+來源篩選只影響畫面，匯出仍是全部來源摘要。
+
+三、這次具體修了什麼
+--------------------
+- 精準支援 DIAG-1 真實盤點出的 nandDesc、dramSize、sum_of_sysctl_hw_memsize*、
+  sum_of_deviceNandSize、actuatorVendorWide/Tele/SuperWide、電池 last_value_*。
+- 額外查找常見型號及版本欄位別名，但沒有保證每份檔案都會有。
+- watchHardwareModel 視為配對 Watch 提示，不把同筆電池資料改歸 Watch。
+- remoteHardwareModel 是遠端線索，不當成本機型號。
+- 只用同物件／祖先的明示型號提示來源；不從上一行、其他物件或目前瀏覽器推定。
+- null、空值、未通過格式檢查、識別欄位，以及有值的候選，各自計數。
+- sum_of_ 保留聚合標記，不直接換算單台 RAM、NAND 銷售容量。
+- 不再把 HostApplicationDisplayID、ScreenTime、antenna_panel、clientConnect
+  等命中誤當成面板供應商。
+- 不用 FCC 與 NominalChargeCapacity 的比值算健康度。
+- 不把 BatteryHealthMetric 當百分比，不把 actuatorVendor 當完整相機模組廠商。
+- 解析交由原生 Web Worker；主畫面保留操作回應與停止按鈕。
+
+四、隱私界線
+------------
+- 原檔唯讀；只保留白名單純量候選與結構化計數，沒有原始整行輸出。
+- BatteryPackID 僅記錄存在次數，不保留值。
+- 本機欄位值也有限制；長字串、疑似帳號、序號、網址、MAC、UUID 等會遮罩。
+- 預設 JSON 不含任何候選值，不含原檔名。
+- 開啟候選值匯出後：數值及格式通過的型號／版本可以輸出；未知文字代碼遮罩。
+- nandDesc 只匯出極小白名單的廠名字詞、TLC 等字詞與容量字詞；其餘描述遮罩。
+  這些僅是原描述中的詞彙，不等於完成廠商或顆粒類型鑑定。
+- 不使用 fetch、XHR、Beacon、WebSocket、第三方程式庫、剪貼簿或持久化儲存。
+- 網站初次載入仍會下載程式檔。iCloud 檔案供應者也可能需要連網取檔。
+- 本頁不註冊／解除任何 Service Worker；上層網站已有的快取仍可能影響程式載入。
+- 「清除」移除本頁資料參照並終止 Worker，不承諾對瀏覽器記憶體做安全抹除；
+  不會刪除原檔或已下載的摘要。
+- 摘要依然可能透露裝置特徵。請檢查後再分享，不要放進公開 Repository。
+- 這是隨包程式的設計與測試，不是第三方資安認證；未來程式被修改後需重新審查。
+
+五、限制與驗收
+--------------
+- 只處理 UTF-8 的逐行 JSON；其他行列入未解析計數，不猜測補值。
+- 上限：100 MiB；單行 2,097,152 字元；深度 24；每行 20,000 個節點／欄位操作。
+- 最多保留 600 個命中物件、每欄位 24 組不同值、每組 5 個紀錄範例；
+  型號候選每角色最多顯示 30 個。達上限時仍盡量完成統計，並明示限制。
+- 本版沒有供應商代碼資料庫；unknown 仍可能很多。
+- 前次摘要只含欄位名稱與次數，因此尚未驗證你原檔中真正的值／型別／歸屬。
+- 單元測試與容器記憶體瀏覽器測試已執行。手機 Safari、你的原 Analytics、
+  GitHub Pages 真實部署尚未驗收。詳見「說明與測試/測試與限制.md」。
+
+六、回退
+--------
+刪除新增加的 diagnostic-v2 資料夾，或直接不再使用這個網址。
+正式 V1.1 與舊 diagnostic/ 不需要改動。
+
+技術參考（製作時核對）
+----------------------
+GitHub Pages branch 發布：
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+W3C Content Security Policy：
+https://www.w3.org/TR/CSP/
+MDN File / Worker 本機讀取介面：
+https://developer.mozilla.org/en-US/docs/Web/API/FileReaderSync

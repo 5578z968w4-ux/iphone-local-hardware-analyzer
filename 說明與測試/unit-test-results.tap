@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: 已由 DIAG-1 發現的 16 個目標欄位均能辨識
+ok 1 - 已由 DIAG-1 發現的 16 個目標欄位均能辨識
+  ---
+  duration_ms: 1.997317
+  type: 'test'
+  ...
+# Subtest: 不再把無關 screen / clientConnect / antenna panel 分成供應商
+ok 2 - 不再把無關 screen / clientConnect / antenna panel 分成供應商
+  ---
+  duration_ms: 0.274399
+  type: 'test'
+  ...
+# Subtest: 只取目標值，不保留原始整行或未知 key
+ok 3 - 只取目標值，不保留原始整行或未知 key
+  ---
+  duration_ms: 2.256316
+  type: 'test'
+  ...
+# Subtest: 空值仍計入欄位存在
+ok 4 - 空值仍計入欄位存在
+  ---
+  duration_ms: 0.424559
+  type: 'test'
+  ...
+# Subtest: null 不會被當成機型
+ok 5 - null 不會被當成機型
+  ---
+  duration_ms: 0.348269
+  type: 'test'
+  ...
+# Subtest: 同一物件 ProductType 只作候選來源
+ok 6 - 同一物件 ProductType 只作候選來源
+  ---
+  duration_ms: 2.062246
+  type: 'test'
+  ...
+# Subtest: 祖先型號可標註來源但保留 ancestor-object
+ok 7 - 祖先型號可標註來源但保留 ancestor-object
+  ---
+  duration_ms: 0.563525
+  type: 'test'
+  ...
+# Subtest: Watch 本身和 iPhone 數字分開
+ok 8 - Watch 本身和 iPhone 數字分開
+  ---
+  duration_ms: 10.926958
+  type: 'test'
+  ...
+# Subtest: watchHardwareModel 是配對提示，不汙染同筆未知來源電池
+ok 9 - watchHardwareModel 是配對提示，不汙染同筆未知來源電池
+  ---
+  duration_ms: 2.514058
+  type: 'test'
+  ...
+# Subtest: watchHardwareModel 不覆盖明示 iPhone 來源
+ok 10 - watchHardwareModel 不覆盖明示 iPhone 來源
+  ---
+  duration_ms: 0.786884
+  type: 'test'
+  ...
+# Subtest: 遠端型號不變成本機型號
+ok 11 - 遠端型號不變成本機型號
+  ---
+  duration_ms: 0.333183
+  type: 'test'
+  ...
+# Subtest: sibling device 物件不替另一個物件強加來源
+ok 12 - sibling device 物件不替另一個物件強加來源
+  ---
+  duration_ms: 0.329773
+  type: 'test'
+  ...
+# Subtest: 不把上一行型號套到下一行
+ok 13 - 不把上一行型號套到下一行
+  ---
+  duration_ms: 0.300748
+  type: 'test'
+  ...
+# Subtest: 配件子樹不繼承主機
+ok 14 - 配件子樹不繼承主機
+  ---
+  duration_ms: 0.242281
+  type: 'test'
+  ...
+# Subtest: 混合兩個來源必須標記衝突
+ok 15 - 混合兩個來源必須標記衝突
+  ---
+  duration_ms: 0.145726
+  type: 'test'
+  ...
+# Subtest: 兩個不同 iPhone 機型也不混為單一來源
+ok 16 - 兩個不同 iPhone 機型也不混為單一來源
+  ---
+  duration_ms: 0.138096
+  type: 'test'
+  ...
+# Subtest: 嵌套獨立物件不交叉合併電池與 RAM
+ok 17 - 嵌套獨立物件不交叉合併電池與 RAM
+  ---
+  duration_ms: 0.21944
+  type: 'test'
+  ...
+# Subtest: sum_of_ 明確保留聚合
+ok 18 - sum_of_ 明確保留聚合
+  ---
+  duration_ms: 0.156067
+  type: 'test'
+  ...
+# Subtest: 不計算錯誤 FCC 比值
+ok 19 - 不計算錯誤 FCC 比值
+  ---
+  duration_ms: 0.176876
+  type: 'test'
+  ...
+# Subtest: BatteryHealthMetric 原值獨立於百分比
+ok 20 - BatteryHealthMetric 原值獨立於百分比
+  ---
+  duration_ms: 0.130766
+  type: 'test'
+  ...
+# Subtest: TLC 統計欄位不產生 NAND 類型結論
+ok 21 - TLC 統計欄位不產生 NAND 類型結論
+  ---
+  duration_ms: 0.109072
+  type: 'test'
+  ...
+# Subtest: 三個 actuatorVendor 欄位保留，未映射模組廠商
+ok 22 - 三個 actuatorVendor 欄位保留，未映射模組廠商
+  ---
+  duration_ms: 1.359533
+  type: 'test'
+  ...
+# Subtest: 預設匯出無任何欄位值或機型
+ok 23 - 預設匯出無任何欄位值或機型
+  ---
+  duration_ms: 0.856583
+  type: 'test'
+  ...
+# Subtest: 允許值匯出含數字，不含檔名
+ok 24 - 允許值匯出含數字，不含檔名
+  ---
+  duration_ms: 0.266092
+  type: 'test'
+  ...
+# Subtest: NAND 描述只輸出白名單詞彙，未知型號遮罩
+ok 25 - NAND 描述只輸出白名單詞彙，未知型號遮罩
+  ---
+  duration_ms: 0.323824
+  type: 'test'
+  ...
+# Subtest: NAND 含疑似識別資料時本機也不顯示原值
+ok 26 - NAND 含疑似識別資料時本機也不顯示原值
+  ---
+  duration_ms: 0.148691
+  type: 'test'
+  ...
+# Subtest: 電池組 ID 僅計數
+ok 27 - 電池組 ID 僅計數
+  ---
+  duration_ms: 0.979455
+  type: 'test'
+  ...
+# Subtest: 任意未知字串代碼只留本機
+ok 28 - 任意未知字串代碼只留本機
+  ---
+  duration_ms: 0.161221
+  type: 'test'
+  ...
+# Subtest: 數字 enum 可經允許選項匯出
+ok 29 - 數字 enum 可經允許選項匯出
+  ---
+  duration_ms: 0.12538
+  type: 'test'
+  ...
+# Subtest: email、URL、UUID、MAC 不被保留
+ok 30 - email、URL、UUID、MAC 不被保留
+  ---
+  duration_ms: 0.296744
+  type: 'test'
+  ...
+# Subtest: 疑似個資父節點整個略過
+ok 31 - 疑似個資父節點整個略過
+  ---
+  duration_ms: 0.116894
+  type: 'test'
+  ...
+# Subtest: HTML payload 不入候選值
+ok 32 - HTML payload 不入候選值
+  ---
+  duration_ms: 0.212452
+  type: 'test'
+  ...
+# Subtest: 非數字、負數、無限值與超範圍被拒絕
+ok 33 - 非數字、負數、無限值與超範圍被拒絕
+  ---
+  duration_ms: 0.243294
+  type: 'test'
+  ...
+# Subtest: readOnly 結果不隱含維修失敗
+ok 34 - readOnly 結果不隱含維修失敗
+  ---
+  duration_ms: 0.123519
+  type: 'test'
+  ...
+# Subtest: 非 JSON 行計數而不亂用 regex 解碼
+ok 35 - 非 JSON 行計數而不亂用 regex 解碼
+  ---
+  duration_ms: 0.182743
+  type: 'test'
+  ...
+# Subtest: CRLF、UTF-8、BOM、最後無換行
+ok 36 - CRLF、UTF-8、BOM、最後無換行
+  ---
+  duration_ms: 0.787268
+  type: 'test'
+  ...
+# Subtest: 跨分塊 UTF-8 字元不中斷
+ok 37 - 跨分塊 UTF-8 字元不中斷
+  ---
+  duration_ms: 4.566343
+  type: 'test'
+  ...
+# Subtest: 空檔、壓縮檔、UTF16 有明確錯誤
+ok 38 - 空檔、壓縮檔、UTF16 有明確錯誤
+  ---
+  duration_ms: 1.082125
+  type: 'test'
+  ...
+# Subtest: 100MiB 上限先檢查
+ok 39 - 100MiB 上限先檢查
+  ---
+  duration_ms: 0.189503
+  type: 'test'
+  ...
+# Subtest: 超長行略過後仍處理下一行
+ok 40 - 超長行略過後仍處理下一行
+  ---
+  duration_ms: 13.60595
+  type: 'test'
+  ...
+# Subtest: 深度上限有統計且不無限遞迴
+ok 41 - 深度上限有統計且不無限遞迴
+  ---
+  duration_ms: 0.39184
+  type: 'test'
+  ...
+# Subtest: 保留物件上限不停止全檔計數
+ok 42 - 保留物件上限不停止全檔計數
+  ---
+  duration_ms: 6.576529
+  type: 'test'
+  ...
+# Subtest: 不同值上限明確標註，不假装展示所有值
+ok 43 - 不同值上限明確標註，不假装展示所有值
+  ---
+  duration_ms: 0.708113
+  type: 'test'
+  ...
+# Subtest: 摘要 JSON 被標記，不冒充原始分析紀錄
+ok 44 - 摘要 JSON 被標記，不冒充原始分析紀錄
+  ---
+  duration_ms: 0.225916
+  type: 'test'
+  ...
+# Subtest: 版本固定且沒有網路或持久化 API
+ok 45 - 版本固定且沒有網路或持久化 API
+  ---
+  duration_ms: 1.259891
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 164.913636

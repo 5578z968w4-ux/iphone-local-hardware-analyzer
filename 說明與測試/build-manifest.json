@@ -1,0 +1,25 @@
+{
+  "version": "DIAG-2.0.0",
+  "build_date": "2026-10-10",
+  "deployment_directory": "diagnostic-v2",
+  "production_files_modified": false,
+  "github_written": false,
+  "production_service_worker_modified": false,
+  "unit_tests": {
+    "passed": 45,
+    "failed": 0
+  },
+  "browser_checks": {
+    "passed": 17,
+    "transport": "in-memory assets with native Worker"
+  },
+  "iphone_tested": false,
+  "real_analytics_values_tested": false,
+  "files": {
+    "diagnostic-v2/diag2-core.d2.0.0.js": "d8041cf884409b13221958726183acf0323633d0363f56288dcfc2b7279a9ce0",
+    "diagnostic-v2/diag2-style.d2.0.0.css": "825f826a9414406cdf146b3a0a173a6082c7f936a61e3341805bf0e480802f9d",
+    "diagnostic-v2/diag2-ui.d2.0.0.js": "97579f71014e71c41cfaae588f5ce0198715746775683504d4438dd79817770f",
+    "diagnostic-v2/diag2-worker.d2.0.0.js": "e907911e398d0587baa6b407e3e24813d9b9a159118cefa39a49d2cd0d5bf2a6",
+    "diagnostic-v2/index.html": "a8a7c5c704873a1a5702bf34bcac10053c60e78fae8a1c48b7e9325e2f5a46c1"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "browser": "system Chromium via Playwright; in-memory asset loader, native Worker",
+  "viewport": "390x844",
+  "checks": [
+    {
+      "test": "版本握手與未選檔防護",
+      "status": "PASS"
+    },
+    {
+      "test": "合成資料可完成掃描且不把無關欄位當硬體",
+      "status": "PASS"
+    },
+    {
+      "test": "掃描期間無 HTTP(S) 請求",
+      "status": "PASS"
+    },
+    {
+      "test": "本機原值切換和來源標籤",
+      "status": "PASS"
+    },
+    {
+      "test": "來源篩選不混入其他組別",
+      "status": "PASS"
+    },
+    {
+      "test": "預設匯出不含樣本值",
+      "status": "PASS"
+    },
+    {
+      "test": "候選值需重新預覽且 NAND 描述遮罩",
+      "status": "PASS"
+    },
+    {
+      "test": "JSON 下載與預覽逐字相符",
+      "status": "PASS"
+    },
+    {
+      "test": "390px 手機版型無水平溢出",
+      "status": "PASS"
+    },
+    {
+      "test": "清除檔案、原值、匯出並重設選項，不寫入 localStorage",
+      "status": "PASS"
+    },
+    {
+      "test": "程式已載入後，斷網選檔與掃描成功",
+      "status": "PASS"
+    },
+    {
+      "test": "44,780 行合成大檔完成掃描，分析時無網路請求",
+      "status": "PASS"
+    },
+    {
+      "test": "停止按鈕可中止 Worker 並清掉部分結果",
+      "status": "PASS"
+    },
+    {
+      "test": "空檔明確錯誤，沒有假成功畫面",
+      "status": "PASS"
+    },
+    {
+      "test": "解析缺漏及全為 null 欄位明確告知",
+      "status": "PASS"
+    },
+    {
+      "test": "CSP 主動連線阻擋實測，表單禁止指令檢查",
+      "status": "PASS"
+    },
+    {
+      "test": "完整操作流程無未處理 JavaScript 例外",
+      "status": "PASS"
+    }
+  ],
+  "syntheticBenchmark": {
+    "bytes": 26066009,
+    "MiB": 24.86,
+    "lines": 44780,
+    "seconds": 0.453,
+    "environment": "container desktop Chromium in-memory UI harness, NOT iPhone Safari or a deployed HTTPS site"
+  },
+  "iPhoneSafariTested": false,
+  "realRawAnalyticsTested": false,
+  "httpsNavigationTested": false,
+  "transportNote": "Managed browser blocks navigations; only asset transport replaced with in-memory loader. Core/UI and native worker processing exercised.",
+  "pageErrors": []
+}

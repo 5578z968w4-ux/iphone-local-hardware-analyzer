@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#153f3b">
+<title>DIAG-2｜iPhone 精準硬體診斷</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./diag2-style.d2.0.0.css">
+<script defer src="./diag2-core.d2.0.0.js"></script>
+<script defer src="./diag2-ui.d2.0.0.js"></script>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">iPhone 本機硬體分析 / 獨立診斷</div><h1>精準硬體診斷 <span>DIAG-2</span></h1><p>只追查已發現的線索，不把統計值當規格。</p></div><a href="../" class="back">返回正式版</a></header>
+<div class="version-strip"><strong id="version">DIAG-2.0.0</strong><span id="ready" role="status">正在載入解析器…</span></div>
+<noscript><section class="card warning">此工具需要 JavaScript，請在 Safari 開啟頁面。</section></noscript>
+<section class="card">
+  <h2>1. 選檔並掃描</h2>
+  <p>選手機「檔案」App 裡的原 <code>Analytics-…ips.ca.synced</code>，不是先前匯出的摘要 JSON。原檔不用上傳 GitHub 或聊天室。</p>
+  <label class="filebox"><span>選擇 Analytics 檔</span><input id="file" type="file" aria-label="選擇 Analytics 檔"></label>
+  <p id="filemeta" class="muted">尚未選取檔案 · 檔案上限 100 MiB</p>
+  <div class="buttons"><button id="scan" disabled>開始精準診斷</button><button id="cancel" class="secondary" disabled>停止</button><button id="clear" class="secondary">清除</button></div>
+  <progress id="progress" value="0" max="100" aria-label="掃描進度"></progress>
+  <p id="status" role="status" aria-live="polite">等待選檔。程式檔載入後，分析不發出網路請求。</p>
+  <button id="demo" class="textbutton" disabled>先用合成資料測試（不是你的手機）</button>
+  <p id="error" class="error" role="alert" hidden></p>
+</section>
+<section id="results" hidden>
+  <div id="demoNotice" class="card warning" hidden>目前是合成測試資料。以下機型、數值與描述不得用來判斷你的 iPhone。</div>
+  <section class="card"><h2>2. 查看找到的證據</h2>
+    <div id="stats" class="stats"></div><div id="warnings" class="notice"></div>
+    <p class="muted">「有 iPhone 線索」僅指同物件或祖先有型號碼，並非裝置身分驗證。<code>watchHardwareModel</code> 只標記配對手錶，不會覆蓋同筆電池的來源。</p>
+    <div class="filters"><label>資料來源<select id="scope"><option value="all">全部來源</option><option value="iphone">有 iPhone 線索</option><option value="watch">有 Watch 線索</option><option value="unknown">來源未確認</option><option value="related">配對／遠端／配件</option><option value="mixed">線索衝突</option></select></label>
+    <label class="check"><input id="showValues" type="checkbox">在本機顯示允許的原值</label></div>
+    <p class="muted">僅取白名單欄位。疑似識別資料、超長描述不顯示；不顯示原始整行，不對代碼硬套供應商名稱。</p>
+    <div id="groups"></div>
+  </section>
+  <section class="card"><details id="recordDetails"><summary>同筆物件核對｜保留欄位關聯，不跨筆拼接</summary><p class="muted">L 是分析檔行次，O 是該行內物件序號，均不是裝置 ID。只顯示最多 600 個目標物件，超出會列明。</p><div id="records"></div><button id="more" class="secondary" hidden>再顯示 20 筆</button></details></section>
+  <section class="card"><h2>3. 預覽後匯出</h2>
+    <p>預設只匯出欄位、次數與來源分類。需要核對數值時再勾選下方選項。上方來源篩選只影響畫面，匯出仍包含全部來源摘要。</p>
+    <label class="check"><input id="includeValues" type="checkbox">包含允許的候選值（電池／容量數字、型號、數字代碼）</label>
+    <p class="muted">NAND 描述只匯出白名單詞彙，其他文字遮罩；未知文字代碼只留本機。不匯出原檔名、整行、完整序號或任意識別碼。摘要仍可能透露裝置特徵，分享前請檢查。</p>
+    <div class="buttons"><button id="preview">預覽匯出內容</button><button id="download" class="secondary" disabled>下載診斷 JSON</button></div>
+    <pre id="exportPreview" hidden tabindex="0" aria-label="實際匯出 JSON"></pre>
+    <p id="exportInfo" class="muted">尚未預覽。清除資料或重新掃描後，需重新確認。</p>
+  </section>
+</section>
+<section class="card privacy"><h2>不動正式版，也不碰你的原檔</h2><p>獨立路徑 <code>diagnostic-v2/</code>。本頁不註冊或刪除 Service Worker，不寫入資料庫、儲存空間或剪貼簿。原檔唯讀處理，只有你按「下載」才產生摘要檔。</p><p>網站載入會取得本工具程式檔；GitHub 不需要接收 Analytics。檔案供應者若是 iCloud，取檔本身仍可能需要下載。此版不是 Apple 官方驗機工具，未提供供應商代碼對照庫。</p></section>
+<footer>DIAG-2.0.0 · 2026-10-10 · 測試版／來源核對用途</footer>
+</main>
+</body></html>
