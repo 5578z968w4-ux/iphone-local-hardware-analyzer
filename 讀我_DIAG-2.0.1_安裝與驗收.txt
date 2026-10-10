@@ -1,0 +1,26 @@
+# DIAG-2.0.1 精準診斷小修正版
+
+## 這次修正範圍
+- `nandDesc` 曾把所有數字當成「字串描述」遮罩。本版對安全整數且介於 0～2^32-1 的代碼，允許**在本機頁面內顯示**，但**任何模式都不匯出原數字**。超出範圍或不符合規則繼續遮罩。
+- `os_version` 支援有限的 iOS / iPhone OS / OS Version 等版本+Build 格式，僅保留**經正規化後的版本資訊**，不保留原字串。原始字串不符合格式仍遮罩。
+- 明確顯示「僅本機可見」、「版本候選」、「已遮罩／格式未識別」。
+
+## 使用與部署
+- 此 ZIP 僅含 `diagnostic-v2/`，上傳到現有 GitHub Repository **根目錄**。
+- 在 GitHub Code → Add file → Upload files 將 `diagnostic-v2/` 中所有檔案放到 `diagnostic-v2/`，使 `diagnostic-v2/index.html` 覆蓋舊檔、新版 JS/CSS 新增。
+- 不要上傳到 Repository 根目錄的 `index.html`；正式版 V1.1 不修改。
+- 舊 `.d2.0.0.js` 檔案留在 Repository 裡無害；新版只會引用 `.d2.0.1.js`。
+- 開啟 `https://5578z968w4-ux.github.io/iphone-local-hardware-analyzer/diagnostic-v2/?v=201`，確認標題為 DIAG-2.0.1。
+- 選手機「檔案」中的原 Analytics `.ips.ca.synced` 重跑一次。
+- 可勾選「在本機顯示允許的原值」；不要公開貼出 `nandDesc` 原值截圖。
+- 匯出 JSON 前先預覽，`nandDesc` 所有數字仍會以 null 遮罩，不會上傳原始 Analytics。
+
+## 驗收條件
+- 首先確認 44,780 行 / 138 筆等級的掃描規模與先前相當（同份 Analytics 才可比較）。
+- `nandDesc` 顯示「僅本機可見」且在勾選原值時能看到允許範圍內的數字代碼。
+- `nandDesc` 匯出為 null；不能在 JSON 看見本機代碼。
+- `os_version` 若為支援格式，顯示經正規化的候選版本；否則保持遮罩，無法保證必有結果。
+- 未解碼成 NAND 廠商／TLC／QLC；並未更改原有電池、記憶體、相機數據。
+
+## 隱私與限制
+這是本機診斷，不是 Apple 官方供應商識別工具。原始檔仍請留在手機，勿上傳 GitHub。`nandDesc` 數字可能含硬體識別訊息，因此只允許本機看，不允許匯出原值。

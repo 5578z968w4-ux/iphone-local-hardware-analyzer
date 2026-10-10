@@ -8,14 +8,14 @@
 <meta name="theme-color" content="#153f3b">
 <title>DIAG-2｜iPhone 精準硬體診斷</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="./diag2-style.d2.0.0.css">
-<script defer src="./diag2-core.d2.0.0.js"></script>
-<script defer src="./diag2-ui.d2.0.0.js"></script>
+<link rel="stylesheet" href="./diag2-style.d2.0.1.css">
+<script defer src="./diag2-core.d2.0.1.js"></script>
+<script defer src="./diag2-ui.d2.0.1.js"></script>
 </head>
 <body>
 <main>
 <header><div><div class="eyebrow">iPhone 本機硬體分析 / 獨立診斷</div><h1>精準硬體診斷 <span>DIAG-2</span></h1><p>只追查已發現的線索，不把統計值當規格。</p></div><a href="../" class="back">返回正式版</a></header>
-<div class="version-strip"><strong id="version">DIAG-2.0.0</strong><span id="ready" role="status">正在載入解析器…</span></div>
+<div class="version-strip"><strong id="version">DIAG-2.0.1</strong><span id="ready" role="status">正在載入解析器…</span></div>
 <noscript><section class="card warning">此工具需要 JavaScript，請在 Safari 開啟頁面。</section></noscript>
 <section class="card">
   <h2>1. 選檔並掃描</h2>
@@ -42,13 +42,13 @@
   <section class="card"><h2>3. 預覽後匯出</h2>
     <p>預設只匯出欄位、次數與來源分類。需要核對數值時再勾選下方選項。上方來源篩選只影響畫面，匯出仍包含全部來源摘要。</p>
     <label class="check"><input id="includeValues" type="checkbox">包含允許的候選值（電池／容量數字、型號、數字代碼）</label>
-    <p class="muted">NAND 描述只匯出白名單詞彙，其他文字遮罩；未知文字代碼只留本機。不匯出原檔名、整行、完整序號或任意識別碼。摘要仍可能透露裝置特徵，分享前請檢查。</p>
+    <p class="muted">nandDesc 數字代碼僅本機檢視，匯出一律遮罩；NAND 文字只匯出白名單詞彙。不匯出原檔名、整行、完整序號或任意識別碼。摘要仍可能透露裝置特徵，分享前請檢查。</p>
     <div class="buttons"><button id="preview">預覽匯出內容</button><button id="download" class="secondary" disabled>下載診斷 JSON</button></div>
     <pre id="exportPreview" hidden tabindex="0" aria-label="實際匯出 JSON"></pre>
     <p id="exportInfo" class="muted">尚未預覽。清除資料或重新掃描後，需重新確認。</p>
   </section>
 </section>
 <section class="card privacy"><h2>不動正式版，也不碰你的原檔</h2><p>獨立路徑 <code>diagnostic-v2/</code>。本頁不註冊或刪除 Service Worker，不寫入資料庫、儲存空間或剪貼簿。原檔唯讀處理，只有你按「下載」才產生摘要檔。</p><p>網站載入會取得本工具程式檔；GitHub 不需要接收 Analytics。檔案供應者若是 iCloud，取檔本身仍可能需要下載。此版不是 Apple 官方驗機工具，未提供供應商代碼對照庫。</p></section>
-<footer>DIAG-2.0.0 · 2026-10-10 · 測試版／來源核對用途</footer>
+<footer>DIAG-2.0.1 · 2026-10-10 · 受限欄位修正／來源核對用途</footer>
 </main>
 </body></html>
