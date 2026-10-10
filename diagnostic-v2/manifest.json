@@ -1,0 +1,14 @@
+{
+  "version": "DIAG-2.0.2",
+  "mode": "nandDesc-shape-only",
+  "changes": [
+    "safe count in stats.nandDescNumericShape",
+    "all raw nandDesc still blocked"
+  ],
+  "preserve": [
+    "root index.html",
+    "app.js",
+    "analyzer-core.js",
+    "sw.js"
+  ]
+}

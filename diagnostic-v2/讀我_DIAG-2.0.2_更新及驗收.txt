@@ -1,0 +1,33 @@
+DIAG-2.0.2 NAND 數值形態驗證（避免反覆盲猜代碼）
+================================================
+更新範圍：只有 diagnostic-v2/，正式根目錄 V1.1 不修改。
+
+DIAG-2.0.1 已成功解析 os_version = iPhone OS 27.0.1 (24A446)，但 nandDesc 69/69 全部變成 numeric-nand-out-of-policy。
+現有規則只接受 0..4294967295 的非負整數於本機顯示，且永不匯出原值。
+目前脫敏 JSON 無法證明被遮罩的原因究竟是負數、浮點、過大整數或無法精確表示的數值。
+本版不放寬原值處理，只新增匿名、彙總的 numeric-shape 計數，讓下一次檢查具有判斷力。
+
+新增 stats.nandDescNumericShape：
+ uint32-local-only        安全整數 0..4294967295（僅本機可見，原數字不匯出）
+ integer-above-uint32    安全整數但超過 2^32-1
+ unsafe-integer          超出 JS 精確整數範圍
+ nonnegative-fraction    非負小數
+ negative-integer        負整數
+ negative-fraction       負小數
+ non-finite              非有限數
+ non-number              不是數值
+
+注意：JSON.parse 可能讓過大的整數失去精度。分類僅為 JS 讀到的數值形態，不能代替原始代碼。
+
+安裝：解壓 ZIP，將 diagnostic-v2 資料夾所有檔案放入 GitHub Repository 同名資料夾。
+index.html 覆蓋舊檔；新增 d2.0.2 四個資源；舊資源可保留。
+不要上傳到 Repository 根目錄、不要修改根目錄 index.html。
+確認顯示 DIAG-2.0.2 後用同一份 Analytics 原始檔掃描。
+匯出脫敏摘要 JSON，檢查 stats.nandDescNumericShape 與 nandDesc field，不要分享原始 Analytics。
+
+驗收：
+- 同一原檔總行數維持 44780；nandDesc 69 筆。
+- `stats.nandDescNumericShape` 計數之和 = nandDesc occurrences = 69。
+- 匯出 JSON 中 nandDesc.values[].value 均為 null 或沒有 values；絕不匯出 nandDesc 原值。
+- os_version 的 normalized-version-candidate 仍為 iPhone OS 27.0.1 (24A446)。
+- 不更動其他電池、記憶體、相機邏輯，也不把 unknown 來源自動認作 iPhone。
