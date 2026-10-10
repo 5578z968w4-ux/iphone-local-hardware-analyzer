@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="iPhone硬體分析">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <meta name="referrer" content="no-referrer">
+  <title>iPhone 本機硬體分析</title>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="brand">
+        <div class="logo">⌁</div>
+        <div>
+          <h1>iPhone 本機硬體分析</h1>
+          <p>Analytics 離線解析器 · PWA V1.0</p>
+        </div>
+      </div>
+      <span class="privacy-badge">純本機</span>
+    </header>
+
+    <section class="card intro">
+      <h2>選擇 Analytics 檔</h2>
+      <p>請先在 iPhone「分析資料」中將最新、非 <code>session</code> 的 Analytics 主檔儲存到「檔案」App，再從這裡選取。</p>
+      <label class="file-button">
+        <input id="fileInput" type="file" accept=".ips,.synced,.json,.txt,application/json,text/plain">
+        選擇 Analytics 檔
+      </label>
+      <div id="fileMeta" class="meta">尚未選擇檔案</div>
+      <div class="actions">
+        <button id="analyzeBtn" class="primary" disabled>開始本機分析</button>
+        <button id="resetBtn" class="secondary" disabled>清除</button>
+      </div>
+      <div id="progressWrap" class="progress-wrap hidden">
+        <div class="progress"><div id="progressBar"></div></div>
+        <div id="progressText" class="progress-text">準備中…</div>
+      </div>
+    </section>
+
+    <section id="summaryCard" class="card hidden">
+      <div class="section-title">
+        <h2>分析結果</h2>
+        <button id="exportBtn" class="secondary small">匯出文字報告</button>
+      </div>
+      <div id="summaryGrid" class="grid"></div>
+    </section>
+
+    <section id="rawCard" class="card hidden">
+      <details>
+        <summary>原始命中欄位</summary>
+        <pre id="rawOutput"></pre>
+      </details>
+    </section>
+
+    <section class="card privacy">
+      <h2>隱私設計</h2>
+      <ul>
+        <li>檔案只由 Safari / PWA 在本機讀取。</li>
+        <li>程式沒有任何上傳、API、追蹤、廣告或第三方程式庫。</li>
+        <li>預設不擷取 IMEI、ECID、UDID、MAC、ICCID、完整序號。</li>
+        <li>供應商資訊僅在原始 Analytics 有可驗證欄位時顯示，不硬猜。</li>
+      </ul>
+    </section>
+
+    <footer>
+      PWA V1.0 · Analyzer DB 2026.10
+    </footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+GitHub Pages 快速部署
+=====================
+
+1. GitHub 建立 Public Repository：
+   iphone-local-hardware-analyzer
+
+2. 把這個資料夾內「全部檔案」上傳到 repository 根目錄。
+   注意：包含 .nojekyll
+
+3. GitHub：
+   Settings → Pages
+
+4. 設定：
+   Source = Deploy from a branch
+   Branch = main
+   Folder = /(root)
+   Save
+
+5. 等 GitHub Pages 部署完成。
+
+6. iPhone Safari 開：
+   https://你的帳號.github.io/iphone-local-hardware-analyzer/
+
+7. 分享 → 加入主畫面。
+
+Analytics 檔不需要、也不可以上傳 GitHub。
+分析檔只在 iPhone Safari / PWA 本機讀取。
