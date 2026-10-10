@@ -1,0 +1,6 @@
+iPhone 本機硬體分析 GitHub Pages V1.1
+------------------------------------
+修正跨裝置誤判、忽略 null、停止將 memSize 當成 RAM、取消錯誤 FCC 電池健康估算。
+新增 analyzer-core.js，需與 index.html、app.js、styles.css、sw.js 同時更新。
+程式和測試未涉及任何實際使用者 Analytics 檔案。
+本版本未經實機最終驗收，需在 iPhone 上使用相同檔案重新測試。

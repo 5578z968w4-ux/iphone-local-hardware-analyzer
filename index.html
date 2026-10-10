@@ -11,6 +11,7 @@
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="stylesheet" href="./styles.css">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>iPhone 本機硬體分析</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
         <div class="logo">⌁</div>
         <div>
           <h1>iPhone 本機硬體分析</h1>
-          <p>Analytics 離線解析器 · PWA V1.0</p>
+          <p>Analytics 離線解析器 · PWA V1.1</p>
         </div>
       </div>
       <span class="privacy-badge">純本機</span>
@@ -49,12 +50,13 @@
         <h2>分析結果</h2>
         <button id="exportBtn" class="secondary small">匯出文字報告</button>
       </div>
+      <div id="warningsOutput" class="warnings" aria-live="polite"></div>
       <div id="summaryGrid" class="grid"></div>
     </section>
 
     <section id="rawCard" class="card hidden">
       <details>
-        <summary>原始命中欄位</summary>
+        <summary>僅顯示允許的欄位和值（不顯示原始整行資料）</summary>
         <pre id="rawOutput"></pre>
       </details>
     </section>
@@ -65,14 +67,15 @@
         <li>檔案只由 Safari / PWA 在本機讀取。</li>
         <li>程式沒有任何上傳、API、追蹤、廣告或第三方程式庫。</li>
         <li>預設不擷取 IMEI、ECID、UDID、MAC、ICCID、完整序號。</li>
-        <li>供應商資訊僅在原始 Analytics 有可驗證欄位時顯示，不硬猜。</li>
+        <li>供應商資訊僅在原始 Analytics 有適合欄位時才顯示候選值；無法確認來源裝置時不硬猜。</li>
       </ul>
     </section>
 
     <footer>
-      PWA V1.0 · Analyzer DB 2026.10
+      PWA V1.1 · 資料來源檢查版 · 2026.10
     </footer>
   </main>
+  <script src="./analyzer-core.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

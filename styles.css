@@ -71,3 +71,5 @@ footer{text-align:center;padding-top:10px}
   .hero{align-items:flex-start}
   h1{font-size:21px}
 }
+
+.warnings{font-size:13px;color:var(--warn);line-height:1.6;white-space:pre-wrap;padding:12px;border-radius:12px;background:rgba(180,83,9,.08);margin-bottom:14px}
